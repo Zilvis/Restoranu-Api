@@ -24,7 +24,17 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationsEntity> getAllReservationsByStatusConfirmed(String status) {
+	public List<ReservationsEntity> getAllReservationsByClientId(Long clientId) {
+		return (List<ReservationsEntity>) reservationRepository.findById(clientId).get();
+	}
+
+	@Override
+	public List<ReservationsEntity> getAllReservationsByDate(LocalDate date) {
+		return (List<ReservationsEntity>) reservationRepository.findByReservationDate(date).get();
+	}
+
+	@Override
+	public List<ReservationsEntity> getAllReservationsByStatus(String status) {
 		return (List<ReservationsEntity>) reservationRepository.findByStatusIgnoreCase(status).get();
 	}
 
