@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @NoArgsConstructor
-@RequestMapping("/api/clients")
+@RequestMapping("/api")
 public class ClientController {
 
 	@Autowired
