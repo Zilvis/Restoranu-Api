@@ -1,7 +1,8 @@
 package com.Restoranu.Api.Restoranu.Api.Service;
 
-import org.springframework.stereotype.Service;
+import com.Restoranu.Api.Restoranu.Api.Entity.ClientsEntity;
 
-@Service
-public class ClientService {
+public interface ClientService {
+
+	ClientsEntity create(ClientsEntity client);
 }
