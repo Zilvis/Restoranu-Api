@@ -5,6 +5,7 @@ import com.Restoranu.Api.Restoranu.Api.Service.ReservationService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -27,18 +28,16 @@ public class ReservationController {
 	}
 
 	@GetMapping("/reservations")
-	public List<ReservationsEntity> getAllReservations(){
+	public List<ReservationsEntity> getAllReservations(@RequestParam (required = false) LocalDate date) {
+		if(date!=null){
+            return reservationService.getAllReservationsByDate(date);
+        }
 		return reservationService.getAllReservations();
 	}
 
 	@GetMapping("/reservations/client/{clientId}")
     public List<ReservationsEntity> getReservationById(@PathVariable Long clientId){
         return reservationService.getAllReservationsByClientId(clientId);
-    }
-
-	@GetMapping("/reservations?date={date}")
-	public List<ReservationsEntity> getAllReservationsByDate(@PathVariable String date){
-        return reservationService.getAllReservationsByDate(LocalDate.parse(date));
     }
 
 	@GetMapping("/reservations/confirmed")
