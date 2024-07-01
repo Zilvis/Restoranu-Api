@@ -5,6 +5,8 @@ import com.Restoranu.Api.Restoranu.Api.Repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 	@Autowired
@@ -13,5 +15,10 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public ClientsEntity create(ClientsEntity client) {
 		return ClientRepository.save(client);
+	}
+
+	@Override
+	public List<ClientsEntity> getClients() {
+		return (List<ClientsEntity>) ClientRepository.findAll();
 	}
 }
